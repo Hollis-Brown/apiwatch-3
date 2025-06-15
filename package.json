@@ -1,0 +1,52 @@
+{
+  "name": "apiwatch",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@headlessui/react": "^1.7.19",
+    "@heroicons/react": "^2.2.0",
+    "@sentry/nextjs": "^9.28.1",
+    "@stripe/stripe-js": "^7.3.1",
+    "@supabase/supabase-js": "^2.50.0",
+    "@types/bcryptjs": "^3.0.0",
+    "@types/bull": "^4.10.4",
+    "@types/uuid": "^10.0.0",
+    "autoprefixer": "^10.4.17",
+    "aws-sdk": "^2.1692.0",
+    "axios": "^1.10.0",
+    "bcryptjs": "^3.0.2",
+    "bull": "^4.16.5",
+    "chart.js": "^4.4.9",
+    "clsx": "^2.1.0",
+    "framer-motion": "^11.18.2",
+    "next": "14.1.0",
+    "next-auth": "^4.24.11",
+    "nodemailer": "^6.10.1",
+    "postcss": "^8.4.35",
+    "react": "^18.2.0",
+    "react-chartjs-2": "^5.3.0",
+    "react-dom": "^18.2.0",
+    "react-hot-toast": "^2.5.2",
+    "stripe": "^18.2.1",
+    "tailwindcss": "^3.4.1",
+    "uuid": "^11.1.0",
+    "zod": "^3.25.64"
+  },
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.10",
+    "@types/node": "^20.11.16",
+    "@types/nodemailer": "^6.4.17",
+    "@types/react": "^18.2.52",
+    "@types/react-dom": "^18.2.18",
+    "eslint": "^8.56.0",
+    "eslint-config-next": "14.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+}
