@@ -12,9 +12,11 @@ export default function LoginPage() {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
   const router = useRouter();
   const searchParams = useSearchParams();
   const callbackUrl = searchParams?.get('callbackUrl') || '/dashboard';
+  const showRegistered = searchParams?.get('registered') === 'true';
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -26,10 +28,13 @@ export default function LoginPage() {
         email,
         password,
         redirect: false,
+        callbackUrl,
       });
 
       if (result?.error) {
-        setError('Invalid email or password');
+        setError(result.error === 'CredentialsSignin' 
+          ? 'Invalid email or password' 
+          : 'An error occurred during sign in');
         return;
       }
 
@@ -52,7 +57,7 @@ export default function LoginPage() {
           <img
             className="mx-auto h-12 w-auto"
             src="/logo.svg"
-            alt="APIWatch"
+            alt="API Schema Validation Tool"
           />
           <h2 className="mt-6 text-center text-3xl font-extrabold text-white">
             Sign in to your account
@@ -76,6 +81,18 @@ export default function LoginPage() {
               className="rounded-md bg-red-500/10 p-4"
             >
               <p className="text-sm text-red-400">{error}</p>
+            </motion.div>
+          )}
+
+          {showRegistered && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="rounded-md bg-green-500/10 p-4"
+            >
+              <p className="text-sm text-green-400">
+                Registration successful! Please sign in with your new account.
+              </p>
             </motion.div>
           )}
 
@@ -138,6 +155,8 @@ export default function LoginPage() {
                 id="remember-me"
                 name="remember-me"
                 type="checkbox"
+                checked={rememberMe}
+                onChange={(e) => setRememberMe(e.target.checked)}
                 className="h-4 w-4 text-primary focus:ring-primary border-gray-700 bg-gray-800 rounded"
               />
               <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-400">

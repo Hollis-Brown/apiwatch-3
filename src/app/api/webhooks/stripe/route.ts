@@ -23,7 +23,7 @@ export async function POST(request: Request) {
 
         // Find the plan that matches the price ID
         const plan = Object.values(SUBSCRIPTION_PLANS).find(
-          (p) => p.stripePriceId === priceId
+          (p: any) => p.stripePriceId === priceId
         );
 
         if (!plan) {
@@ -37,7 +37,7 @@ export async function POST(request: Request) {
             subscription_plan: plan.id,
             subscription_status: subscription.status,
             subscription_current_period_end: new Date(
-              subscription.current_period_end * 1000
+              (subscription as any).current_period_end * 1000
             ).toISOString(),
           })
           .eq('stripe_customer_id', customerId);

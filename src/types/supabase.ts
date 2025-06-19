@@ -138,6 +138,35 @@ export interface Database {
           is_active?: boolean
         }
       }
+      comments: {
+        Row: {
+          id: string;
+          api_id: string;
+          user_id: string;
+          line_number: number;
+          text: string;
+          created_at: string;
+          resolved: boolean;
+        };
+        Insert: {
+          id?: string;
+          api_id: string;
+          user_id: string;
+          line_number: number;
+          text: string;
+          created_at?: string;
+          resolved?: boolean;
+        };
+        Update: {
+          id?: string;
+          api_id?: string;
+          user_id?: string;
+          line_number?: number;
+          text?: string;
+          created_at?: string;
+          resolved?: boolean;
+        };
+      };
     }
     Views: {
       [_ in never]: never

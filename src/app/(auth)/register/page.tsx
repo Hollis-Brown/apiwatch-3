@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 
@@ -15,6 +15,8 @@ export default function RegisterPage() {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const showSuccess = searchParams?.get('success') === 'true';
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -55,7 +57,7 @@ export default function RegisterPage() {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.message || 'Registration failed');
+        throw new Error(data.error || data.details || 'Registration failed');
       }
 
       // Redirect to login page after successful registration
@@ -78,7 +80,7 @@ export default function RegisterPage() {
           <img
             className="mx-auto h-12 w-auto"
             src="/logo.svg"
-            alt="APIWatch"
+            alt="API Schema Validation Tool"
           />
           <h2 className="mt-6 text-center text-3xl font-extrabold text-white">
             Create your account
@@ -102,6 +104,18 @@ export default function RegisterPage() {
               className="rounded-md bg-red-500/10 p-4"
             >
               <p className="text-sm text-red-400">{error}</p>
+            </motion.div>
+          )}
+
+          {showSuccess && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="rounded-md bg-green-500/10 p-4"
+            >
+              <p className="text-sm text-green-400">
+                Registration successful! Please check your email to verify your account.
+              </p>
             </motion.div>
           )}
 

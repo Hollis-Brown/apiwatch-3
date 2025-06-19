@@ -130,6 +130,7 @@ export async function POST(req: Request) {
         .single();
 
       if (createError) {
+        console.error('CREATE ERROR:', createError);
         throw createError;
       }
 

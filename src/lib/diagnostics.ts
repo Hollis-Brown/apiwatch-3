@@ -1,5 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
-import type { DiagnosticEntry, DiagnosticStep } from './types';
+// import type { DiagnosticEntry, DiagnosticStep } from './types';
 
 // Initialize Supabase client for diagnostics
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
